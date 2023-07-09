@@ -18,12 +18,9 @@ router.route("/admin/update/emergencymedicine/:id").post(emergencyMedicineUpdate
 router.route("/admin/get/unavailablemedicine").get(findAllUnailableList);
 router.route("/admin/update/unavailablemedicine/:id").post(unavailableMedicineUpdate);
 
-
-
 router.route("/api/v1/admin/getalluser").get(getAllUser);
 router.route("/api/v1/admin/deleteuser").post(deleteUser);
-router.route("/api/v1/admin/updateuserverification")
-	.post(updateUserVerification);
+router.route("/api/v1/admin/updateuserverification").post(updateUserVerification);
 router.route("/api/v1/admin/getpendingtestresults").get(getPendingTestResults);
 router.route("/api/v1/admin/publishtestresults").post(publishTestResults);
 
