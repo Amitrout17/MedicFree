@@ -1,6 +1,7 @@
 const nodeMailer = require("nodemailer");
 
 const sendEmail = async (options) => {
+  console.log("code entering flow");
   const transporter = nodeMailer.createTransport({
     host: process.env.SMPT_HOST,
     port: process.env.SMPT_PORT,
@@ -9,6 +10,8 @@ const sendEmail = async (options) => {
       user: process.env.SMPT_MAIL,
       pass: process.env.SMPT_PASSWORD,
     },
+    // here it goes
+    tls: { rejectUnauthorized: false },
   });
 
   const mailOptions = {

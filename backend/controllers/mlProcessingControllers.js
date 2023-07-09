@@ -35,7 +35,7 @@ exports.varifiyPrescutionForMedicineBooking = async (req, res) => {
 
 exports.scanPrescution = async (req, res) => {
   try {
-    const filePath = `D:/Medifree/backend/uploads/${req.files[0].filename}`;
+    const filePath = `D:/MedicFree/backend/uploads/${req.files[0].filename}`;
     var result;
     var arr = [];
     await axios
@@ -107,7 +107,7 @@ exports.sentimentAnalysis = async (req, res) => {
     console.log("message incoming");
     const configuration = new Configuration({
       organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      apiKey: "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",
     });
 
     const openai = new OpenAIApi(configuration);
@@ -166,7 +166,7 @@ exports.medicalChatBot = async (req, res) => {
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
       organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      apiKey: "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",
     });
 
     const openai = new OpenAIApi(configuration);
@@ -197,8 +197,9 @@ exports.medicalChatBot = async (req, res) => {
         });
     }
     const message = req.body.input;
+    console.log(message);
     const prompt = `Give your answer in one to two sentences for the query which is delimited with triple backticks \n
-    user query: '''${message}'''`
+    user query: '''${message}'''`;
 
     await complete(prompt).then(() => {
       res.status(200).json({
