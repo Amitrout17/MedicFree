@@ -19,6 +19,12 @@ function AdminSidebar() {
       icon: UpdateUser,
       iconStyle: iconStyle,
     },
+    {
+      title: "Add New Medicine",
+      link: `/dashboard/user/updateUser/${id}`,
+      icon: MedicineTaken,
+      iconStyle: iconStyle,
+    },
   ];
 
   return (
