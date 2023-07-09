@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import LogTemplate from "./LogTemplate";
 
 function DoctorsEyeUser() {
   const { id } = useParams();
@@ -23,8 +24,12 @@ function DoctorsEyeUser() {
 
   return (
     <>
-      hi
-      {logs && logs.map((item) => <div>{item.message}</div>)}
+    <div style={{ display:"flex", flexDirection:"column", gap:"20px", padding:"2rem"}}>
+        {logs ?
+        logs.map((item) => LogTemplate(item))
+        :
+        <div>Fetching json data...</div>}
+      </div>
     </>
   );
 }
