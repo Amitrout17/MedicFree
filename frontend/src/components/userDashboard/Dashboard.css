@@ -1,0 +1,94 @@
+:root {
+	--nav-green: rgb(202, 255, 190);
+	--nav-dark-green: rgb(155, 250, 133);
+	--sidebar-width: 280px;
+	--options-height: 45px;
+	--text-size: 1.1rem;
+}
+
+.dashboardMenu {
+	width: 100%;
+	height: 75vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.dashboardMenu-child {
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+}
+
+.navigationPanel {
+	width: var(--sidebar-width);
+	background-color: var(--nav-green);
+	display: flex;
+	flex-direction: column;
+}
+
+.navigationPanel > ul {
+	margin: 0px;
+	padding:0px;
+	width: 100%;
+	height: 100%;
+}
+
+.sidebarList {
+	list-style-type: none;
+}
+
+.sidebarListItem {
+	padding: 0px;
+	margin: 0px;
+	display: block;
+	color: black;
+	height: var(--options-height);
+	text-decoration: none;
+	font-size: var(--text-size);
+}
+
+.sidebarListItem > div {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	height: var(--options-height);
+	margin-left: 10px;
+}
+
+.flexbox-column{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+}
+.flexbox-column > img {
+	margin: 0px;
+}
+
+.activeLink {
+	padding: 0px;
+	margin: 0px;
+	display: block;
+	color: white;
+	background-color: var(--nav-dark-green);
+	height: var(--options-height);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: var(--text-size);
+}
+
+
+.activeLink > div {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	height: var(--options-height);
+	margin-left: 20px;
+}
+
+.sidebarContent {
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: calc(100% - var(--sidebar-width));
+}
