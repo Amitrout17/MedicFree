@@ -44,5 +44,8 @@ app.get("/uploads/:file", (req, res) => {
   }
 });
 
+//user routes
+const userRoute = require("./routes/userRoute");
+app.use(userRoute);
 
 module.exports = app;
