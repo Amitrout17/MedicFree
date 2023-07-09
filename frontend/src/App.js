@@ -33,7 +33,7 @@ import DoctorAppointment from "./components/DoctorAppointment/DoctorAppointment.
 import Room from "./components/DoctorAppointment/Room/Room.js";
 import EmergencyMedicineUpdate from "./components/adminDashboard/EmergencyMedicineUpdate.js";
 import UnavailableMedicineUpdate from "./components/adminDashboard/UnavailableMedicineUpdate.js";
-import DoctorsEyeUser from "./components/DoctorsEye/UserInterface.js";
+import DoctorsEyeUser from "./components/DoctorsEye/DoctorsEyeUser.js";
 import DoctorInterface from "./components/DoctorsEye/DoctorInterface.js";
 
 function App() {
