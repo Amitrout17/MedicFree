@@ -30,6 +30,8 @@ import VideoCall from "./components/DoctorAppointment/VideoCall.js";
 import ChatRoom from "./components/Chatroom/ChatRoom.js";
 import DoctorAppointment from "./components/DoctorAppointment/DoctorAppointment.js";
 import Room from "./components/DoctorAppointment/Room/Room.js";
+import EmergencyMedicineUpdate from "./components/adminDashboard/EmergencyMedicineUpdate.js";
+import UnavailableMedicineUpdate from "./components/adminDashboard/UnavailableMedicineUpdate.js";
 
 function App() {
   const [user, setuser] = useState();
@@ -322,6 +324,26 @@ function App() {
             <>
               <Nav user={user} />
               <GetAllUser />
+            </>
+          }
+        />
+
+         <Route
+          path="/dashboard/admin/unavailable/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <UnavailableMedicineUpdate />
+            </>
+          }
+        />
+
+         <Route
+          path="/dashboard/admin/emergency/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <EmergencyMedicineUpdate />
             </>
           }
         />

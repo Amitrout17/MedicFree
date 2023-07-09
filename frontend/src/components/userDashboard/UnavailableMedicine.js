@@ -5,6 +5,8 @@ import Sidebar from "./Sidebar";
 import { Oval } from "react-loader-spinner";
 
 function UnavailableMedicine() {
+
+  
   const [jsonData, setJsonData] = useState(null);
   const { id } = useParams();
 
@@ -37,12 +39,15 @@ function UnavailableMedicine() {
 					console.log(jsonData)}
 				{
 				jsonData.allUnavailableMedicalRecords.map((item) => (
-					<div key={item._id}>
+					<div id={item._id}>
             <div className="medicinecard2">
             <img src={item.image} alt={item.medicineName} />
             <div className="medicine-detail2">
 						<div><b>Name:</b> {item.medicineName}</div>
 						<div><b>Availibility Status: </b>{item.Availabilitystatus}</div>
+               
+        
+              
 						</div>
 					</div>
 					</div>
