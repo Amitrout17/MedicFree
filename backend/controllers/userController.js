@@ -130,29 +130,29 @@ exports.varifyUser = async (req, res) => {
 };
 
 exports.updateVerificationStatus = async (req, res) => {
-	try {
-		const updateStatus = await user.findOneAndUpdate(
-			{
-				_id: req.params.id,
-			},
-			{
-				$set: { varified: true }
-			},
-			{
-				"new": true
-			},
-		);
+  try {
+    const updateStatus = await user.findOneAndUpdate(
+      {
+        _id: req.params.id,
+      },
+      {
+        $set: { varified: true },
+      },
+      {
+        new: true,
+      }
+    );
 
-		res.status(200).json({
-			success: true,
-			updateStatus,
-		});
-	} catch (error) {
-		res.status(500).json({
-			message: "Internal server error",
-			errorMessage: error.message,
-		});
-	}
+    res.status(200).json({
+      success: true,
+      updateStatus,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
 };
 
 exports.loadUser = async (req, res) => {
