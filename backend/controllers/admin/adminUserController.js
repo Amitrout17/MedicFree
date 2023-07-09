@@ -29,8 +29,8 @@ exports.getAllUser = async(req, res) => {
 // (after fetching all the users from users API)
 exports.deleteUser = async(req, res) => {
     try{
-        const reqUser = await user.findOneAndDelete({ role: 'user', _id: req.body.id });
-        res.status(200).json({
+        const reqUser = await user.findOneAndDelete({ _id: req.body.id });
+        res.status(201).json({
             message: "Deleted user",
             user: reqUser,
         });

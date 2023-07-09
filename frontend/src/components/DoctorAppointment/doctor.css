@@ -1,0 +1,48 @@
+.doctor-item{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 50px;
+     row-gap: 30px;
+    margin: 30px 200px;
+    
+  }
+  
+  @media screen  and (max-width: 1000px) {
+    .doctor-item{
+      grid-template-columns: repeat(1,1fr);
+      margin: 20px;
+    }
+  }
+
+  .one-item {
+    box-shadow: 0 0 10px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+.doctor-detail{
+  color: black;
+  display: flex;
+  margin-bottom: -8px;
+}
+
+
+  .fir-img{
+       width: 45px;
+       height: 45px;
+  }
+
+  .last-img{
+    width: 30px;
+    height: 30px;
+    margin-left: 70px;
+   
+  }
+  .inner-detail{
+    margin-bottom: 10px;
+    border-bottom: 2px;
+    border-color: black;
+    padding: 0px 25px;
+  }
+  .last-para{
+    color: black;
+    margin-left: 50px;
+  }
