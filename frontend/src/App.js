@@ -33,9 +33,11 @@ import DoctorAppointment from "./components/DoctorAppointment/DoctorAppointment.
 import Room from "./components/DoctorAppointment/Room/Room.js";
 import EmergencyMedicineUpdate from "./components/adminDashboard/EmergencyMedicineUpdate.js";
 import UnavailableMedicineUpdate from "./components/adminDashboard/UnavailableMedicineUpdate.js";
+import DoctorsEyeUser from "./components/DoctorsEye/UserInterface.js";
 
 function App() {
   const [user, setuser] = useState();
+
   useEffect(() => {
     const loadUser = async () => {
       try {
@@ -56,6 +58,7 @@ function App() {
     };
     loadUser();
   }, []);
+
 
   console.log(user);
 
@@ -355,6 +358,15 @@ function App() {
             </>
           }
         />
+        
+        <Route
+          path={`/user/home/doctorseye/:id`}
+          element={
+            <>
+            <Nav user={user} />
+            <DoctorsEyeUser />
+          </>
+            } />
 
         {/* ai chat consultancy */}
         <Route
