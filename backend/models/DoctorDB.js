@@ -22,7 +22,7 @@ const doctorScheema = new mongoose.Schema({
         type: String,
         required: [true, "Enter the name of doctor"],
       },
-      time: {
+      time: { //of formate 10:30
         type: String,
         required: [true, "Enter the doctor speciality"],
       },
