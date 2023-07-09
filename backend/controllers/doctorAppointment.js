@@ -34,8 +34,17 @@ exports.getDoctorBySpeciality = async (req, res) => {
   }
 };
 
-exports.scheduleDoctorAppointment=async(req,res)=>{
-    const getDoctor=await doctor.findOne({
-        
-    })
-}
+exports.scheduleDoctorAppointment = async (req, res) => {
+  try {
+    const getDoctor = await doctor.findOne({
+      spaciality: req.params.spaciality,
+    });
+    
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};
