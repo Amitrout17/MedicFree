@@ -6,6 +6,13 @@ import Signup from "./components/Home/Signup.js";
 import Login from "./components/Home/Login.js";
 import Nav from "./components/Home/Nav.js";
 
+import DashboardHome from "./components/userDashboard/DashboardHome.js";
+import MedicineTaken from "./components/userDashboard/MedicineTaken.js";
+import UserProfile from "./components/userDashboard/UserProfile.js";
+import UnavailableMedicine from "./components/userDashboard/UnavailableMedicine.js";
+import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedicine.js";
+import UserLabTest from "./components/userDashboard/LabTestDetails.js";
+import VerifyUser from "./components/userDashboard/VerifyUser.js";
 function App() {
   const [user, setuser] = useState();
   useEffect(() => {
@@ -55,6 +62,71 @@ function App() {
             </>
           }
         />
+
+        {/* user dashboard  */}
+        <Route
+          path="/dashboard/user/profile/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <DashboardHome />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/user/medicineTaken/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <MedicineTaken />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/user/updateUser/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <UserProfile />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/user/unavailableMedicine/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <UnavailableMedicine />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/user/emergencyMedicine/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <UserEmergencyMedicine />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/user/labTest/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <UserLabTest />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/user/verifyyourself/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <VerifyUser />
+            </>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
