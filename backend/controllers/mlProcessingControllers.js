@@ -107,7 +107,7 @@ exports.sentimentAnalysis = async (req, res) => {
     console.log("message incoming");
     const configuration = new Configuration({
       organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      apiKey: "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",
     });
 
     const openai = new OpenAIApi(configuration);
@@ -166,7 +166,7 @@ exports.medicalChatBot = async (req, res) => {
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
       organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      apiKey: "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",
     });
 
     const openai = new OpenAIApi(configuration);
@@ -196,8 +196,9 @@ exports.medicalChatBot = async (req, res) => {
           console.log(err);
         });
     }
-
-    const prompt = req.body.input;
+    const message = req.body.input;
+    const prompt = `Give your answer in one to two sentences for the query which is delimited with triple backticks \n
+    user query: '''${message}'''`
 
     await complete(prompt).then(() => {
       res.status(200).json({

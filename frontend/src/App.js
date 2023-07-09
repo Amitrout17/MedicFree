@@ -25,6 +25,11 @@ import VerifyUser from "./components/userDashboard/VerifyUser.js";
 import GetAllUser from "./components/adminDashboard/UserOperations.js";
 import TestConfirmation from "./components/TestScheduling/TestConfirmation.js";
 import AIChat from "./components/AIconsultancy/AIchat.js";
+import UploadPrescutionNav from "./components/UploadPrescutionNav/UploadPrescutionNav.js";
+import VideoCall from "./components/DoctorAppointment/VideoCall.js";
+import ChatRoom from "./components/Chatroom/ChatRoom.js";
+import DoctorAppointment from "./components/DoctorAppointment/DoctorAppointment.js";
+import Room from "./components/DoctorAppointment/Room/Room.js";
 
 function App() {
   const [user, setuser] = useState();
@@ -57,6 +62,9 @@ function App() {
         {/* user registration and authentication router */}
 
         <Route path="/" element={<Home user={user} />} />
+                {/* user registration and authentication router */}
+
+                <Route path="/" element={<Home user={user} />} />
         <Route
           path="/login"
           element={
@@ -72,6 +80,171 @@ function App() {
             <>
               <Nav user={user} />
               <Signup />
+            </>
+          }
+        />
+        {/*upload prescution in the navbar */}
+
+        <Route
+          path="/prescription/upload"
+          element={
+            <>
+              <Nav user={user} />
+              <UploadPrescutionNav user={user} />
+            </>
+          }
+        />
+
+        {/* medicine booking router */}
+        <Route
+          path="/medicine/book/:medicineId/:store_id"
+          element={
+            <>
+              <Nav user={user} />
+              <UploadPrescution user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/ChatRoom"
+          element={
+            <>
+              <Nav user={user} />
+              {user ? <ChatRoom user={user} /> : ""}
+            </>
+          }
+        />
+        <Route
+          path="/medicine/requrest/unavailabe"
+          element={
+            <>
+              <Nav user={user} />
+              <Unavailablemedicine user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/medicine/requrest/unavailabe/conformbooking/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <Conformpage user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/medicine/requrest/unavailabe/conformbooking/status/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <Status user={user} />
+            </>
+          }
+        />
+
+        {/*Doctor Appointment*/}
+        <Route
+          path="/appointment/doctor"
+          element={
+            <>
+              <Nav user={user} />
+              <DoctorAppointment user={user} />
+            </>
+          }
+        />
+
+        <Route
+          path="/medicine/requrest/emergency"
+          element={
+            <>
+              <Nav user={user} />
+              <Emergencymedicine user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/medicine/requrest/emergency/conformbooking/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <Confirm user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/medicine/requrest/emergency/conformbooking/statuspage/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <Statuspage user={user} />
+            </>
+          }
+        />
+
+        <Route
+          path="/medicine/requrest/emergency"
+          element={
+            <>
+              <Nav user={user} />
+              <Emergencymedicine user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/medicine/requrest/emergency/conformbooking/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <Confirm user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/medicine/requrest/emergency/conformbooking/statuspage/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <Statuspage user={user} />
+            </>
+          }
+        />
+        {/* Test scheduling routes */}
+        <Route
+          path="/test/testCenters/details/all/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <TestCenerDetails user={user} />
+            </>
+          }
+        />
+        <Route
+          path="/test/confirmation/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <TestConfirmation />
+            </>
+          }
+        />
+
+        {/* Doctor Appointment */}
+
+        <Route
+          path="/doctor/vcall"
+          element={
+            <>
+              <Nav user={user} />
+              <VideoCall />
+            </>
+          }
+        />
+        <Route
+          path="/doctor/vcall/room/:roomID"
+          element={
+            <>
+              <Nav user={user} />
+              <Room />
             </>
           }
         />
@@ -140,6 +313,9 @@ function App() {
             </>
           }
         />
+
+
+        {/* admin route */}
         <Route
           path="/dashboard/admin/userdetails/:id"
           element={

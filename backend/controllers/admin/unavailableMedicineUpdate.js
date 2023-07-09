@@ -23,8 +23,8 @@ exports.findAllUnailableList= async(req,res)=>{
 exports.unavailableMedicineUpdate=async(req,res)=>{
   try{   
    
-     const result= await unavailableMedicine.findOne({_id:req.params.id})
-        result.Availabilitystatus='approved';
+     const result= await unavailableMedicine.findOne({_id:req.body.id})
+        result.Availabilitystatus=req.body.status;
          await result.save();
          res.status(201).json({
                   sucess: true,
