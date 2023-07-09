@@ -24,18 +24,25 @@ function nav({ user }) {
             <Link to={"/"}>Home</Link>
           </li>
           {user.name ? (
-            
-              user.role === 'user' ? (
+            user.role === "user" ? (
               <li>
-                <Link to={userVerified === 'true' ? `/dashboard/user/updateUser/${user._id}` :`/dashboard/user/verifyyourself/${user._id}`}>{user.name}</Link>
+                <Link
+                  to={
+                    userVerified === "true"
+                      ? `/dashboard/user/updateUser/${user._id}`
+                      : `/dashboard/user/verifyyourself/${user._id}`
+                  }
+                >
+                  {user.name}
+                </Link>
               </li>
-              ):(
+            ) : (
               <li>
-                <Link to={`/dashboard/admin/userdetails/${user._id}`}>{user.name}</Link>
+                <Link to={`/dashboard/admin/userdetails/${user._id}`}>
+                  {user.name}
+                </Link>
               </li>
-
-              )
-            
+            )
           ) : (
             <li>
               <Link to={"/signup"}>Sign up</Link>
@@ -48,6 +55,10 @@ function nav({ user }) {
           <li>
             <Link to={"/chatroom"}>Joint Patient Chat Room</Link>
           </li>
+          <li>
+            <Link to={"/ai/chat"}>Doctor's Eye</Link>
+          </li>
+
           <li>
             <Link to={"/ai/chat"}>AI Consultancy</Link>
           </li>

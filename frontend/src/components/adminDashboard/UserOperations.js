@@ -88,8 +88,9 @@ function GetAllUser() {
                         <b>Age: {item.age}</b>
                         <b>Address: {item.address}</b>
                         <b>Verification Status: {item.varified.toString()}</b>
+                        <div style={{display:"flex",justifyContent:"center",marginTop:"10px"}}>
                         <button
-                          className="btn btn-success"
+                          className="btn btn-success mx-2"
                           onClick={() => {
                             handleVerify({
                               id: item._id,
@@ -107,6 +108,7 @@ function GetAllUser() {
                         >
                           Delete User
                         </button>
+                        </div>
                       </div>
                     </div>
                   </div>

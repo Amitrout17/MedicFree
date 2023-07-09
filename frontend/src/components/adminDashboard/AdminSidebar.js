@@ -20,6 +20,18 @@ function AdminSidebar() {
       iconStyle: iconStyle,
     },
     {
+      title: "Unavailable Medicine",
+      link: `/dashboard/admin/unavailable/${id}`,
+      icon: UpdateUser,
+      iconStyle: iconStyle,
+    },
+    {
+      title: "Emergency Medicine",
+      link: `/dashboard/admin/emergency/${id}`,
+      icon: UpdateUser,
+      iconStyle: iconStyle,
+    },
+    {
       title: "Add New Medicine",
       link: `/dashboard/admin/addmedicine/${id}`,
       icon: MedicineTaken,

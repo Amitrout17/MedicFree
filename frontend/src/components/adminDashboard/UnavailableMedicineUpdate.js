@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Oval } from "react-loader-spinner";
+import AdminSidebar from "./AdminSidebar";
 
 const UnavailableMedicineUpdate = () => {
   const [jsonData, setJsonData] = useState(null);
@@ -52,15 +53,20 @@ const UnavailableMedicineUpdate = () => {
 //   };
   return (
     <>
-      {jsonData ? (
+      {jsonData !== null ? (
         <>
+          <div className="dashboardMenu">
+        <AdminSidebar />
+        <div className="sidebarContent dashboardMenu-child">
+         
           <h2 className="head-medicineTaken">Unavailable Medicines</h2>
           <div className="medicine-item2">
             {
               /* <pre>{JSON.stringify(jsonData, null, 2)}</pre> */
               console.log(jsonData)
             }
-            {jsonData.unavailableMedicineList.map((item) => (
+            {jsonData.unavailableMedicineList &&
+            jsonData.unavailableMedicineList.map((item) => (
               <div key={item._id}>
                 <div className="medicinecard2">
                   <img src={item.image} alt={item.medicineName} />
@@ -73,16 +79,15 @@ const UnavailableMedicineUpdate = () => {
                       {item.Availabilitystatus}
                     </div>
 
-                    <button className="btnn" onClick={handleInput(item._id,"approved")}>
+                    <button className="btn btn-success my-2" onClick={()=>{handleInput(item._id,"approved")}}>
                       approved
                     </button>
-                    {/* <button className="btnn" onClick={handleInput2(item._id,"waiting")}>
-                      waiting
-                    </button> */}
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+          </div>
           </div>
         </>
       ) : (
@@ -108,6 +113,7 @@ const UnavailableMedicineUpdate = () => {
             />
           </div>
         </div>
+        
       )}
     </>
   );
