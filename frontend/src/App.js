@@ -22,6 +22,7 @@ import UnavailableMedicine from "./components/userDashboard/UnavailableMedicine.
 import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedicine.js";
 import UserLabTest from "./components/userDashboard/LabTestDetails.js";
 import VerifyUser from "./components/userDashboard/VerifyUser.js";
+import GetAllUser from "./components/adminDashboard/UserOperations.js";
 import TestConfirmation from "./components/TestScheduling/TestConfirmation.js";
 import AIChat from "./components/AIconsultancy/AIchat.js";
 
@@ -136,6 +137,15 @@ function App() {
             <>
               <Nav user={user} />
               <VerifyUser />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/admin/userdetails/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <GetAllUser />
             </>
           }
         />

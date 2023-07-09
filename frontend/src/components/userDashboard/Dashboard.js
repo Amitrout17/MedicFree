@@ -1,5 +1,4 @@
 import React from 'react';
-router.route("/api/v1/user/varify/:id").post(varifyUser);
 import NavigationPanel from './NavigationPanel.js';
 import './Dashboard.css';
 
