@@ -23,6 +23,7 @@ import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedic
 import UserLabTest from "./components/userDashboard/LabTestDetails.js";
 import VerifyUser from "./components/userDashboard/VerifyUser.js";
 import TestConfirmation from "./components/TestScheduling/TestConfirmation.js";
+import AIChat from "./components/AIconsultancy/AIchat.js";
 
 function App() {
   const [user, setuser] = useState();
@@ -135,6 +136,17 @@ function App() {
             <>
               <Nav user={user} />
               <VerifyUser />
+            </>
+          }
+        />
+
+        {/* ai chat consultancy */}
+        <Route
+          path="/ai/chat"
+          element={
+            <>
+              <Nav user={user} />
+              <AIChat />
             </>
           }
         />

@@ -107,7 +107,7 @@ exports.sentimentAnalysis = async (req, res) => {
     console.log("message incoming");
     const configuration = new Configuration({
       organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      apiKey: "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",
     });
 
     const openai = new OpenAIApi(configuration);
@@ -151,6 +151,60 @@ exports.sentimentAnalysis = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
+    res.status(500).json({
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};
+
+//medical chat bot
+
+exports.medicalChatBot = async (req, res) => {
+  try {
+    // import { Configuration, OpenAIApi } from "openai";
+    const { Configuration, OpenAIApi } = require("openai");
+    const configuration = new Configuration({
+      organization: "org-XtTaGoOrbmalQUxVkwT79oum",
+      apiKey: "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",
+    });
+
+    const openai = new OpenAIApi(configuration);
+    var result;
+    async function complete(prompt) {
+      const completion = await openai
+        .createChatCompletion({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are a friendly medical chatbot here to help patients with their medical queries. Remember to suggest doctor's consultation for severe cases.",
+            },
+            { role: "user", content: prompt },
+          ],
+          temperature: 0.6,
+          max_tokens: 150,
+          top_p: 1.0,
+          frequency_penalty: 0.0,
+          presence_penalty: 0.3,
+        })
+        .then((res) => {
+          result = res.data.choices[0].message.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    const prompt = req.body.input;
+
+    await complete(prompt).then(() => {
+      res.status(200).json({
+        result,
+      });
+    });
+  } catch (error) {
     res.status(500).json({
       message: "Internal server error",
       errorMessage: error.message,

@@ -4,7 +4,7 @@ import "./css/Nav.css";
 import Nav2 from "./Nav2";
 
 function nav({ user }) {
-	const userVerified = localStorage.getItem("userVerified");
+  const userVerified = localStorage.getItem("userVerified");
   return user ? (
     <>
       <div className="navigation-bar-div">
@@ -25,7 +25,15 @@ function nav({ user }) {
           </li>
           {user.name ? (
             <li>
-              <Link to={userVerified == 'true' ? `/dashboard/user/updateUser/${user._id}` :`/dashboard/user/verifyyourself/${user._id}`}>{user.name}</Link>
+              <Link
+                to={
+                  userVerified == "true"
+                    ? `/dashboard/user/updateUser/${user._id}`
+                    : `/dashboard/user/verifyyourself/${user._id}`
+                }
+              >
+                {user.name}
+              </Link>
             </li>
           ) : (
             <li>
@@ -40,7 +48,7 @@ function nav({ user }) {
             <Link to={"/chatroom"}>Joint Patient Chat Room</Link>
           </li>
           <li>
-            <Link to={"/patient/chat/room"}>AI Consultancy</Link>
+            <Link to={"/ai/chat"}>AI Consultancy</Link>
           </li>
 
           {/*  <li>
