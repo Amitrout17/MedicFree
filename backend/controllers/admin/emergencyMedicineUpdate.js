@@ -4,7 +4,7 @@ const emergencyMedicine= require("../../models/emergencyDB");
 exports.findAllEmergencyList= async(req,res)=>{
     try{
     const emergencyMedicineList= await emergencyMedicine.find({
-        Availabilitystatus:{$ne:"delivered"}});
+        Availabilitystatus:{$ne:"Delivered"}});
 
         res.status(201).json({
             sucess: true,
@@ -34,7 +34,7 @@ exports.emergencyMedicineUpdate=async(req,res)=>{
      const result= await emergencyMedicine.findOne({_id:req.body.id})
         result.Availabilitystatus=req.body.status;
          await result.save();
-         res.status(201).json({
+         res.status(200).json({
                   sucess: true,
                  result,
                   
