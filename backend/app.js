@@ -47,6 +47,48 @@ app.get("/uploads/:file", (req, res) => {
 //user routes
 const userRoute = require("./routes/userRoute");
 app.use(userRoute);
+
+//medicine router
+const medicineRoute = require("./routes/medicineRoute");
+app.use(medicineRoute);
+
+//medical router
+const medicalRouter = require("./routes/medicalRouter");
+app.use(medicalRouter);
+
+//test center routes
+const testCenterRoutes = require("./routes/testCenterRoutes");
+app.use(testCenterRoutes);
+
+//common router
+const combineRouter = require("./routes/combineRouter");
+app.use(combineRouter);
+
+//unavailalbe medicine routes
+const unavailabelMedicineRoutes = require("./routes/unavailableRoutes");
+app.use(unavailabelMedicineRoutes);
+
+//testing routes
+const testRoutes = require("./routes/testRoutes");
+app.use(testRoutes);
+
+//ml routes
+const mlRoutes = require("./routes/mlProcessingRoutes");
+app.use(mlRoutes);
+
+//booking routes
+const bookingRoutes = require("./routes/bookingRoutes");
+app.use(bookingRoutes);
+
+//emergency routes
+const emergencyMedicinceRoutes = require("./routes/emergencyMedicineRoutes");
+app.use(emergencyMedicinceRoutes);
+
+//user dashboard routes
+const userDashboardRoutes = require("./routes/userDasboardRoute");
+app.use(userDashboardRoutes);
+
+//admin routes
 const adminRoute = require("./routes/adminRoute");
 app.use(adminRoute);
 
