@@ -12,7 +12,7 @@ exports.findAllEmergencyList= async(req,res)=>{
             
           });
 
-        }catch (error) {
+        }catch (error) { 
             res.status(500).json({
               message: "Internal server error",
               errorMessage: error.message,
