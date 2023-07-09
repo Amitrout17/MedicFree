@@ -1,4 +1,5 @@
 const user = require("../models/userModel");
+
 const sendEmail = require("../utils/sendEmail");
 const JWT = require("jsonwebtoken");
 
