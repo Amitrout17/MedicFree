@@ -1,0 +1,32 @@
+{
+  "name": "medicfree",
+  "version": "1.0.0",
+  "description": "hello this is our github repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon backend/server.js",
+    "ml": "python ml/text_extraxt_api.py",
+    "frontend": "npm start --prefix frontend"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-ws": "^5.0.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.3.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.3",
+    "nodemon": "^3.0.0",
+    "openai": "^3.3.0",
+    "react-bootstrap": "^2.8.0",
+    "react-loader-spinner": "^5.3.4"
+  }
+}
