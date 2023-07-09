@@ -76,4 +76,4 @@ function nav({ user }) {
   );
 }
 
-export default n  av;
+export default nav;
