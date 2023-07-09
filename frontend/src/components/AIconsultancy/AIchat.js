@@ -19,6 +19,7 @@ function AIChat() {
       })
       .catch((error) => {
         setwait(false);
+        alert("openAI server busy");
         console.log(error);
       });
   };

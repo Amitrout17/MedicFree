@@ -213,3 +213,62 @@ exports.medicalChatBot = async (req, res) => {
     });
   }
 };
+
+//ai bot for threat analysis :
+
+exports.threatAnalysis = async (req, res) => {
+  try {
+    // import { Configuration, OpenAIApi } from "openai";
+    const { Configuration, OpenAIApi } = require("openai");
+    const configuration = new Configuration({
+      organization: "org-XtTaGoOrbmalQUxVkwT79oum",
+      apiKey: "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",
+    });
+
+    const openai = new OpenAIApi(configuration);
+    var result;
+    async function complete(prompt) {
+      const completion = await openai
+        .createChatCompletion({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are a mental health chatbot trained to indicate doctors about their patient's emotional well-being. Your goal is to analyze the person's mental state based on their messages. Please remember that you are an AI model and not a substitute for professional mental health advice.",
+            },
+            { role: "user", content: prompt },
+          ],
+        })
+        .then((res) => {
+          result = res.data.choices[0].message.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    const message = req.body.message;
+
+    const prompt = `What is the threat level of the following message, 
+which is delimited with triple backticks ?\n
+
+Give your answer as a single word, from the options "low" or "medium" or "high".\n
+
+Review message: '''${message}'''
+`;
+
+    //need to fetch high low med
+
+    await complete(prompt).then(() => {
+      res.status(200).json({
+        result,
+      });
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};

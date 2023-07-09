@@ -95,6 +95,11 @@ app.use(adminRoute);
 const doctorRoute = require("./routes/doctorRoutes");
 app.use(doctorRoute);
 
+//doctor eye
+
+const doctorEye = require("./routes/doctorEyeRouter");
+app.use(doctorEye);
+
 // chatroom
 // const chatApp = require("./middleware/chatroom/chatroomApp.js");
 // app.use("/chatapp", chatApp);
