@@ -4,8 +4,17 @@ import axios from "axios";
 import Home from "./components/Home/Home.js";
 import Signup from "./components/Home/Signup.js";
 import Login from "./components/Home/Login.js";
-import Nav from "./components/Home/Nav.js";
+import UploadPrescution from "./components/MedicineBooking/UploadPrescution.js";
+import Unavailablemedicine from "./components/Unavailablemedicine/UnavailableMedicine.js";
+import Emergencymedicine from "./components/Emergencymedicine/Emergencymedicine.js";
 
+import Conformpage from "./components/Unavailablemedicine/Conformpage.js";
+import Confirm from "./components/Emergencymedicine/confirm.js";
+
+import Nav from "./components/Home/Nav.js";
+import Status from "./components/Unavailablemedicine/Status.js";
+import Statuspage from "./components/Emergencymedicine/Statuspage.js";
+import TestCenerDetails from "./components/TestScheduling/TestCenerDetails.js";
 import DashboardHome from "./components/userDashboard/DashboardHome.js";
 import MedicineTaken from "./components/userDashboard/MedicineTaken.js";
 import UserProfile from "./components/userDashboard/UserProfile.js";
@@ -14,6 +23,9 @@ import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedic
 import UserLabTest from "./components/userDashboard/LabTestDetails.js";
 import VerifyUser from "./components/userDashboard/VerifyUser.js";
 import GetAllUser from "./components/adminDashboard/UserOperations.js";
+import TestConfirmation from "./components/TestScheduling/TestConfirmation.js";
+import AIChat from "./components/AIconsultancy/AIchat.js";
+
 function App() {
   const [user, setuser] = useState();
   useEffect(() => {
@@ -126,7 +138,7 @@ function App() {
               <Nav user={user} />
               <VerifyUser />
             </>
-      }
+          }
         />
         <Route
           path="/dashboard/admin/userdetails/:id"
@@ -135,7 +147,18 @@ function App() {
               <Nav user={user} />
               <GetAllUser />
             </>
-      }
+          }
+        />
+
+        {/* ai chat consultancy */}
+        <Route
+          path="/ai/chat"
+          element={
+            <>
+              <Nav user={user} />
+              <AIChat />
+            </>
+          }
         />
       </Routes>
     </BrowserRouter>

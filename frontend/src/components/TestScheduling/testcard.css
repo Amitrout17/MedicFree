@@ -1,0 +1,30 @@
+.test-confirm{
+    text-align: center;
+}
+
+.test-confirm h1{
+    display: inline;
+}
+.test-confirm img{
+    display: inline;
+    width: 80px;
+}
+.mid-para{
+    text-align: center;
+    font-weight: 500;
+}
+.last-div{
+    margin: auto;
+    width: 420px;
+    text-align: center;
+    
+}
+.last-div span{
+    font-weight: 500;
+    font-size: 20px;
+    
+}
+.last-div p{
+      font-size: 16px;
+      font-weight: 400;
+}

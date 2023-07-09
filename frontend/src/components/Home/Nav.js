@@ -3,8 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import "./css/Nav.css";
 import Nav2 from "./Nav2";
 
-function Nav({ user }) {
-	const userVerified = localStorage.getItem("userVerified");
+function nav({ user }) {
+  const userVerified = localStorage.getItem("userVerified");
   return user ? (
     <>
       <div className="navigation-bar-div">
@@ -49,7 +49,7 @@ function Nav({ user }) {
             <Link to={"/chatroom"}>Joint Patient Chat Room</Link>
           </li>
           <li>
-            <Link to={"/patient/chat/room"}>AI Consultancy</Link>
+            <Link to={"/ai/chat"}>AI Consultancy</Link>
           </li>
 
           {/*  <li>
@@ -76,4 +76,4 @@ function Nav({ user }) {
   );
 }
 
-export default Nav;
+export default n  av;

@@ -92,4 +92,40 @@ app.use(userDashboardRoutes);
 const adminRoute = require("./routes/adminRoute");
 app.use(adminRoute);
 
+const doctorRoute = require("./routes/doctorRoutes");
+app.use(doctorRoute);
+
+// chatroom
+// const chatApp = require("./middleware/chatroom/chatroomApp.js");
+// app.use("/chatapp", chatApp);
+
+app.get("/test", (req, res) => {
+  res.cookie("test", "cookie stored");
+  res.send("working");
+});
+
+const expressWs = require("express-ws")(app);
+
+app.ws("/chat", (ws, req) => {
+  ws.on("open", () => {
+    console.log("Connected!");
+  });
+  ws.on("message", (message) => {
+    console.log("Received message:", message);
+
+    //ML model to be implemented here
+
+    // Send the message to all other connected clients
+    expressWs.getWss().clients.forEach((client) => {
+      if (client !== ws) {
+        client.send(message);
+      }
+    });
+  });
+
+  ws.on("close", () => {
+    console.log("Connection closed");
+  });
+});
+
 module.exports = app;
