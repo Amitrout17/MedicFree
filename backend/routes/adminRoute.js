@@ -13,10 +13,10 @@ const {
 
 
 router.route("/admin/get/emergencymedicine").get(findAllEmergencyList);
-router.route("/admin/update/emergencymedicine/:id").post(emergencyMedicineUpdate);
+router.route("/admin/update/emergencymedicine").post(emergencyMedicineUpdate);
 
 router.route("/admin/get/unavailablemedicine").get(findAllUnailableList);
-router.route("/admin/update/unavailablemedicine/:id").post(unavailableMedicineUpdate);
+router.route("/admin/update/unavailablemedicine").post(unavailableMedicineUpdate);
 
 router.route("/api/v1/admin/getalluser").get(getAllUser);
 router.route("/api/v1/admin/deleteuser").post(deleteUser);
