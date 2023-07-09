@@ -77,7 +77,10 @@ exports.scheduleDoctorAppointment = async (req, res) => {
       });
     } else {
       //here i want to update the exist time in latest record by 30 min
-      
+      const latstAppointment = getDoctor.appointments[0];
+
+      console.log(latstAppointment);
+
       const newRecord = await appointment.create({
         doctorId: req.body.doctorId,
         patientId: req.user.id,
@@ -88,9 +91,9 @@ exports.scheduleDoctorAppointment = async (req, res) => {
       });
     }
 
-    const docAppointment = getDoctor.appointments[0];
+/*     const docAppointment = getDoctor.appointments[0];
     const [hours, minutes] = time.split(":").map(Number);
-  } catch (error) {
+ */  } catch (error) {
     res.status(500).json({
       sucess: false,
       message: "Internal server error",
