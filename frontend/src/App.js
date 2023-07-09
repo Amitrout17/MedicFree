@@ -125,8 +125,8 @@ function App() {
               <Nav user={user} />
               <VerifyUser />
             </>
-          }
-        />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
