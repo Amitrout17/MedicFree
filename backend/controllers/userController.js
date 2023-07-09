@@ -2,6 +2,7 @@ const user = require("../models/userModel");
 const sendEmail = require("../utils/sendEmail");
 const JWT = require("jsonwebtoken");
 
+
 exports.registerUser = async (req, res) => {
   try {
     const finduser = await user.findOne({
