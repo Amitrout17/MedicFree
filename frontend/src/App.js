@@ -13,6 +13,7 @@ import UnavailableMedicine from "./components/userDashboard/UnavailableMedicine.
 import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedicine.js";
 import UserLabTest from "./components/userDashboard/LabTestDetails.js";
 import VerifyUser from "./components/userDashboard/VerifyUser.js";
+import GetAllUser from "./components/adminDashboard/UserOperations.js";
 function App() {
   const [user, setuser] = useState();
   useEffect(() => {
@@ -125,8 +126,17 @@ function App() {
               <Nav user={user} />
               <VerifyUser />
             </>
-          }
-        />
+      }
+        />
+        <Route
+          path="/dashboard/admin/userdetails/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <GetAllUser />
+            </>
+      }
+        />
       </Routes>
     </BrowserRouter>
   );

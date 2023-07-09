@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./css/Nav.css";
 import Nav2 from "./Nav2";
 
-function nav({ user }) {
+function Nav({ user }) {
 	const userVerified = localStorage.getItem("userVerified");
   return user ? (
     <>
@@ -24,9 +24,18 @@ function nav({ user }) {
             <Link to={"/"}>Home</Link>
           </li>
           {user.name ? (
-            <li>
-              <Link to={userVerified == 'true' ? `/dashboard/user/updateUser/${user._id}` :`/dashboard/user/verifyyourself/${user._id}`}>{user.name}</Link>
-            </li>
+            
+              user.role === 'user' ? (
+              <li>
+                <Link to={userVerified === 'true' ? `/dashboard/user/updateUser/${user._id}` :`/dashboard/user/verifyyourself/${user._id}`}>{user.name}</Link>
+              </li>
+              ):(
+              <li>
+                <Link to={`/dashboard/admin/userdetails/${user._id}`}>{user.name}</Link>
+              </li>
+
+              )
+            
           ) : (
             <li>
               <Link to={"/signup"}>Sign up</Link>
@@ -67,4 +76,4 @@ function nav({ user }) {
   );
 }
 
-export default nav;
+export default Nav;
