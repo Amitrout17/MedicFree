@@ -10,9 +10,9 @@ const appointmentScheema = new mongoose.Schema({
     ref: "user",
   },
   time: {
-    type: Number,
+    type: String,
   },
-  day: {
+  date: {
     type: Number,
   },
   month: {

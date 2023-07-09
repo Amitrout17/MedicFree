@@ -92,4 +92,7 @@ app.use(userDashboardRoutes);
 const adminRoute = require("./routes/adminRoute");
 app.use(adminRoute);
 
+const doctorRoute = require("./routes/doctorRoutes");
+app.use(doctorRoute);
+
 module.exports = app;

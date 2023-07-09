@@ -1,26 +1,39 @@
 const doctor = require("../models/DoctorDB");
 const appointment = require("../models/appointmentDb");
-// Create a new Date object
-var currentDate = new Date();
 
-// Get the current day (0-6)
-var day = currentDate.getDay();
+var currentDate = new Date();
 
 // Get the current date (1-31)
 var date = currentDate.getDate();
 
+// Get the current month (0-11, where 0 represents January)
+var month = currentDate.getMonth() + 1; // Adding 1 to align with the usual month numbering (1-12)
+
 // Get the current year (yyyy)
 var year = currentDate.getFullYear();
 
-// Get the current time in 24-hour format (hh:mm:ss)
-var hours = currentDate.getHours();
-var minutes = currentDate.getMinutes();
-var seconds = currentDate.getSeconds();
+//hard code value
+// Function to generate a random 24-hour time
+function getRandom24HourTime() {
+  // Generate random hour (0-23)
+  const hour = Math.floor(Math.random() * 24);
 
-// Format the time values to always have two digits
-hours = ("0" + hours).slice(-2);
-minutes = ("0" + minutes).slice(-2);
-seconds = ("0" + seconds).slice(-2);
+  // Generate random minute (0-59)
+  const minute = Math.floor(Math.random() * 60);
+
+  // Format the time as a string
+  const time = `${padZero(hour)}:${padZero(minute)}`;
+
+  return time;
+}
+
+// Function to pad zero to single-digit numbers
+function padZero(number) {
+  return number.toString().padStart(2, "0");
+}
+
+// Example usage
+const randomTime = getRandom24HourTime();
 
 exports.addDoctor = async (req, res) => {
   try {
@@ -59,41 +72,96 @@ exports.getDoctorBySpeciality = async (req, res) => {
 exports.scheduleDoctorAppointment = async (req, res) => {
   try {
     const getDoctor = await doctor.findOne({
-      _id: req.params.id,
+      _id: req.params.doctorId,
     });
 
-    if (!getDoctor) {
+    if (getDoctor.appointments.length === 0) {
       const newrecord = await appointment.create({
-        doctorId: req.body.doctorId,
+        doctorId: req.params.doctorId,
         patientId: req.user.id,
-        time: `${hours}:${minutes}`,
-        day,
+        time: `10 : 30`,
+        date,
         month,
         year,
       });
+
+      //now need to update in doctor db also:
+
+      const newApp = {
+        time: `10 : 30`,
+        date: `${date}-${month}-${year}`,
+      };
+
+      const newArr = [newApp];
+
+      getDoctor.appointments = newArr;
+      await getDoctor.save();
+      //doctor updation completed
       return res.status(200).json({
         sucess: true,
         newrecord,
       });
     } else {
       //here i want to update the exist time in latest record by 30 min
-      const latstAppointment = getDoctor.appointments[0];
+      const latstAppointment =
+        getDoctor.appointments[getDoctor.appointments.length - 1];
 
-      console.log(latstAppointment);
+      const recentTime = latstAppointment.time;
+
+      console.log(recentTime);
+
+      var timeParts = recentTime.split(":");
+
+      // Extract the hours and minutes
+      var hours = parseInt(timeParts[0]);
+      var minutes = parseInt(timeParts[1]);
+
+      console.log(minutes);
+
+      minutes = minutes + 30;
+      console.log(minutes);
+      if (minutes >= 60) {
+        minutes = "00";
+        hours++;
+      }
+
+      console.log("getting minutes");
+      console.log(hours, minutes);
+
+      const randomTime = getRandom24HourTime();
 
       const newRecord = await appointment.create({
         doctorId: req.body.doctorId,
         patientId: req.user.id,
-        time: `${hours}:${minutes}`,
-        day,
+        time: randomTime,
+        date,
         month,
         year,
       });
+
+      //now update in doctor appointment also
+      const prev = getDoctor.appointments;
+      var newApp = [
+        ...prev,
+        {
+          date: `${date}-${month}-${year}`,
+          time: randomTime,
+        },
+      ];
+      getDoctor.appointments = newApp;
+      await getDoctor.save();
+
+      return res.status(200).json({
+        sucess: true,
+        newRecord,
+        getDoctor,
+      });
     }
 
-/*     const docAppointment = getDoctor.appointments[0];
+    /*     const docAppointment = getDoctor.appointments[0];
     const [hours, minutes] = time.split(":").map(Number);
- */  } catch (error) {
+ */
+  } catch (error) {
     res.status(500).json({
       sucess: false,
       message: "Internal server error",
