@@ -1,0 +1,50 @@
+.medicinecard{
+    padding-bottom: 6px;
+    padding-top: 1px;
+    border-radius: 6px;
+    border:2px solid #dfe3e6;
+   
+}
+.medicinecard:hover{
+    border: 1px solid black;
+    transition-delay: 0.2s;
+}
+
+
+.medicinecard img{
+    width:350px;
+    height: 250px;
+    margin-bottom: 13px;
+    border-radius: 5px;
+}
+.medicine-detail{
+    margin-top: -7px;
+    text-align: center;
+}
+.medicine-detail span{
+    font-size: 21px;
+    font-weight: 500;
+    
+}
+.medicine-detail p{
+    
+    font-size: 15px;
+    font-weight: 400;
+}
+.medicine-detail button{
+    background-color: #0dba08;
+    color: white;
+    padding: 13px 15px;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: -3px;
+    border-style: none;
+}
+
+  .medicine-detail button:hover{
+    color: black;
+    
+  }

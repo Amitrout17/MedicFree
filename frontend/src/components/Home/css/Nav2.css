@@ -1,0 +1,58 @@
+.navimg {
+    width: 53px;
+    height: 52px;
+}
+
+.Intext {
+    margin-left: 10px;
+
+}
+
+.Inimg {
+    display: flex;
+    padding-top: 3px;
+    padding-left: 15px;
+}
+
+nav ul {
+    padding-bottom: 0px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    margin-bottom: -11px;
+
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 10px 25px 0px;
+
+    min-width: 50px;
+}
+
+nav ul li:nth-child(2) {
+    margin-left: 10px;
+    border-left: 2px solid rgb(240, 235, 235);
+}
+
+nav ul li:nth-child(3) {
+    margin-left: 10px;
+    border-left: 2px solid rgb(240, 235, 235);
+}
+
+.Intext p {
+    color: black;
+    font-size: 11px;
+}
+
+.Intext span {
+    color: black;
+    padding-top: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}

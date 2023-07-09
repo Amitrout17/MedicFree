@@ -76,6 +76,7 @@ exports.scheduleDoctorAppointment = async (req, res) => {
         newrecord,
       });
     } else {
+      //here i want to update the exist time in latest record by 30 min
       
       const newRecord = await appointment.create({
         doctorId: req.body.doctorId,
