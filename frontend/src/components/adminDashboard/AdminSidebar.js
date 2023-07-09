@@ -15,7 +15,19 @@ function AdminSidebar() {
   const sidebarData = [
     {
       title: "Update Users",
-      link: `/dashboard/user/updateUser/${id}`,
+      link: `/dashboard/admin/userdetails/${id}`,
+      icon: UpdateUser,
+      iconStyle: iconStyle,
+    },
+    {
+      title: "Unavailable Medicine",
+      link: `/dashboard/admin/unavailable/${id}`,
+      icon: UpdateUser,
+      iconStyle: iconStyle,
+    },
+    {
+      title: "Emergency Medicine",
+      link: `/dashboard/admin/emergency/${id}`,
       icon: UpdateUser,
       iconStyle: iconStyle,
     },
