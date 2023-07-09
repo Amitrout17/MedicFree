@@ -47,7 +47,6 @@ app.get("/uploads/:file", (req, res) => {
 //user routes
 const userRoute = require("./routes/userRoute");
 app.use(userRoute);
-
 const adminRoute = require("./routes/adminRoute");
 app.use(adminRoute);
 
