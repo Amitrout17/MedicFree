@@ -2,32 +2,83 @@ const medicineItem = require("../models/medicineModel.js");
 
 exports.addMedicine = async (req, res) => {
   try {
-    const findmedicine = await medicineItem.findOne({
+    const findmedicine = await medicineItem.find({
       storeName: req.body.storeName,
-      "medicine.name": req.body.medicine.name,
       address: req.body.address,
       pinCode: req.body.pinCode,
     });
 
-    if (findmedicine) {
+    if(findmedicine === null) {
+
+      findmedicine.save((err, updatedDocument) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.status(200).json({ sucess: true, updatedDocument });
+        }
+      });
+    }
+
+    let medicinePresent = false;
+    findmedicine.map((item) => {
+      if (item.name === req.body.medicine.name) {
+        medicinePresent = true;
+      }
+    });
+    if (medicinePresent) {
       return res.status(403).json({
         success: false,
         message: "medicine already exists",
       });
     }
 
-    const newMedicine = await medicineItem.create(req.body);
-    res.status(200).json({
-      success: true,
-      newMedicine,
+    const newMedicine = {
+      ...findmedicine,
+      medicine: [...findmedicine.medicine, req.body.medicine],
+    };
+    console.log(newMedicine);
+
+    newMedicine.save((err, updatedDocument) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ sucess: true, updatedDocument });
+      }
     });
   } catch (error) {
     res.status(500).json({
+      sucess:false,
       message: "Internal server error",
       errorMessage: error.message,
     });
   }
 };
+
+exports.checkMedicines = async(req, res) => {
+  const medicineArray = req.body.medicinelist;
+
+  var medicines = [];
+  try{
+    const medicinenames = await medicineItem.distinct("medicine");
+    console.log(medicinenames);
+    medicinenames.map((item) => {
+      medicineArray.map(i => {
+        if(i === item.name && item.stock > 0) {
+          medicines.push(item);
+        }
+      });
+    });
+    res.status(200).json({
+      result: "success",
+      medicines
+    });
+  } catch(error) {
+    res.status(500).json({
+      result: "failed",
+      err: error.message,
+    })
+  }
+}
 
 exports.fetchAllMedicine = async (req, res) => {
   try {

@@ -7,29 +7,26 @@ import OTPInput, { ResendOTP } from "otp-input-react";
 function VerifyYourself() {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const userVerified = localStorage.getItem("userVerified");
 	const [verificationCode, setverificationCode] = useState(null);
 	const [OTP, setOTP] = useState("");
 
-	useEffect(() => {
-		const fetchVerificationCode = async() => {
-			try {
-				const response = await axios
-					.post(`http://localhost:4000/api/v1/user/varify/${id}`,
-				);
-				setverificationCode(response.data.varificationCode);
-				console.log(response);
-			} catch (error) {
-				console.log("Error fetching JSON data:", error);
-			}
-		};
-		fetchVerificationCode();
-	}, []);
+
+	const sendOTP =  async() => {
+		try {
+			const response = await axios
+				.post(`http://localhost:4000/api/v1/user/varify/${id}`,
+			);
+			setverificationCode(response.data.varificationCode);
+			console.log(response);
+		} catch (error) {
+			console.log("Error fetching JSON data:", error);
+		}
+	};
 
 	const handleChangeInput = (e) => {
 		setOTP(e.target.value);
 		console.log(e.target.value);
-	}
+	};
 
 	const handleConfirm = async(e) => {
 		e.preventDefault();
@@ -64,7 +61,10 @@ function VerifyYourself() {
 							disabled={false}
 							style={{ padding: "20px", }}
 						/>
-						<button className="btn btn-success" style={{backgroundColor: "#0dba08", }} onClick={handleConfirm} >Verify</button>
+						<div style={{ display: "flex", gap: "30px", }}>
+							<button className="btn btn-success" style={{backgroundColor: "#0dba08", }} onClick={sendOTP} >Send OTP</button>
+							<button className="btn btn-success" style={{backgroundColor: "#0dba08", }} onClick={handleConfirm} >Verify</button>
+						</div>
 					</div>
 				</div>
 			</div>

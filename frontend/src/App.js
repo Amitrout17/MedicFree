@@ -23,6 +23,7 @@ import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedic
 import UserLabTest from "./components/userDashboard/LabTestDetails.js";
 import VerifyUser from "./components/userDashboard/VerifyUser.js";
 import GetAllUser from "./components/adminDashboard/UserOperations.js";
+import AddNewMedicine from "./components/adminDashboard/AddNewMedicine.js";
 import TestConfirmation from "./components/TestScheduling/TestConfirmation.js";
 import AIChat from "./components/AIconsultancy/AIchat.js";
 import UploadPrescutionNav from "./components/UploadPrescutionNav/UploadPrescutionNav.js";
@@ -322,6 +323,16 @@ function App() {
             <>
               <Nav user={user} />
               <GetAllUser />
+            </>
+          }
+        />
+
+        <Route
+          path="/dashboard/admin/addmedicine/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <AddNewMedicine />
             </>
           }
         />
