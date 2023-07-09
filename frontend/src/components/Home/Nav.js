@@ -56,7 +56,7 @@ function nav({ user }) {
             <Link to={"/chatroom"}>Joint Patient Chat Room</Link>
           </li>
           <li>
-            <Link to={"/ai/chat"}>Doctor's Eye</Link>
+            <Link to={`/user/home/doctorseye/${user._id}`}>Doctor's Eye</Link>
           </li>
 
           <li>

@@ -19,10 +19,15 @@ let currentDate = `${day}-${month}-${year}`;
 exports.getUserLogs = async (req, res) => {
   try {
     const userLogs = await doctorEye.find({
-      _id: req.params.id,
+      patientId: req.params.id,
     });
+    var logs = [];
+    userLogs.map((i) => {
+      logs.push(i.logs);
+    });
+    console.log(userLogs);
     res.status(200).json({
-      userLogs,
+      logs,
     });
   } catch (error) {
     res.status(500).json({

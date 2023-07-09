@@ -23,6 +23,7 @@ import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedic
 import UserLabTest from "./components/userDashboard/LabTestDetails.js";
 import VerifyUser from "./components/userDashboard/VerifyUser.js";
 import GetAllUser from "./components/adminDashboard/UserOperations.js";
+import AddNewMedicine from "./components/adminDashboard/AddNewMedicine.js";
 import TestConfirmation from "./components/TestScheduling/TestConfirmation.js";
 import AIChat from "./components/AIconsultancy/AIchat.js";
 import UploadPrescutionNav from "./components/UploadPrescutionNav/UploadPrescutionNav.js";
@@ -32,9 +33,11 @@ import DoctorAppointment from "./components/DoctorAppointment/DoctorAppointment.
 import Room from "./components/DoctorAppointment/Room/Room.js";
 import EmergencyMedicineUpdate from "./components/adminDashboard/EmergencyMedicineUpdate.js";
 import UnavailableMedicineUpdate from "./components/adminDashboard/UnavailableMedicineUpdate.js";
+import DoctorsEyeUser from "./components/DoctorsEye/UserInterface.js";
 
 function App() {
   const [user, setuser] = useState();
+
   useEffect(() => {
     const loadUser = async () => {
       try {
@@ -55,6 +58,7 @@ function App() {
     };
     loadUser();
   }, []);
+
 
   console.log(user);
 
@@ -328,6 +332,13 @@ function App() {
           }
         />
 
+        <Route
+          path="/dashboard/admin/addmedicine/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <AddNewMedicine />
+            </>}/>
          <Route
           path="/dashboard/admin/unavailable/:id"
           element={
@@ -347,6 +358,15 @@ function App() {
             </>
           }
         />
+        
+        <Route
+          path={`/user/home/doctorseye/:id`}
+          element={
+            <>
+            <Nav user={user} />
+            <DoctorsEyeUser />
+          </>
+            } />
 
         {/* ai chat consultancy */}
         <Route
