@@ -106,8 +106,8 @@ exports.sentimentAnalysis = async (req, res) => {
   try {
     console.log("message incoming");
     const configuration = new Configuration({
-      organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      organization: process.env.OPEN_AI_API_ORG,
+      apiKey: process.env.OPEN_AI_API_KEY,
     });
 
     const openai = new OpenAIApi(configuration);
@@ -165,8 +165,8 @@ exports.medicalChatBot = async (req, res) => {
     // import { Configuration, OpenAIApi } from "openai";
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
-      organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      organization: process.env.OPEN_AI_API_ORG,
+      apiKey: process.env.OPEN_AI_API_KEY,
     });
 
     const openai = new OpenAIApi(configuration);
@@ -221,9 +221,12 @@ exports.threatAnalysis = async (req, res) => {
     // import { Configuration, OpenAIApi } from "openai";
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
-      organization: "org-XtTaGoOrbmalQUxVkwT79oum",
-      apiKey: "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",
+      organization: process.env.OPEN_AI_API_ORG,
+      apiKey: process.env.OPEN_AI_API_KEY,
     });
+
+    console.log(process.env.OPEN_AI_API_ORG)
+    console.log(process.env.OPEN_AI_API_KEY)
 
     const openai = new OpenAIApi(configuration);
     var result;
