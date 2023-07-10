@@ -23,6 +23,7 @@ import UserEmergencyMedicine from "./components/userDashboard/UserEmergencyMedic
 import UserLabTest from "./components/userDashboard/LabTestDetails.js";
 import VerifyUser from "./components/userDashboard/VerifyUser.js";
 import GetAllUser from "./components/adminDashboard/UserOperations.js";
+import AddNewMedicine from "./components/adminDashboard/AddNewMedicine.js";
 import TestConfirmation from "./components/TestScheduling/TestConfirmation.js";
 import AIChat from "./components/AIconsultancy/AIchat.js";
 import UploadPrescutionNav from "./components/UploadPrescutionNav/UploadPrescutionNav.js";
@@ -33,9 +34,12 @@ import Room from "./components/DoctorAppointment/Room/Room.js";
 import EmergencyMedicineUpdate from "./components/adminDashboard/EmergencyMedicineUpdate.js";
 import UnavailableMedicineUpdate from "./components/adminDashboard/UnavailableMedicineUpdate.js";
 import DoctorDetails from "./components/DoctorAppointment/DoctorDetails.js";
+import DoctorsEyeUser from "./components/DoctorsEye/DoctorsEyeUser.js";
+import DoctorInterface from "./components/DoctorsEye/DoctorInterface.js";
 
 function App() {
   const [user, setuser] = useState();
+
   useEffect(() => {
     const loadUser = async () => {
       try {
@@ -65,9 +69,9 @@ function App() {
         {/* user registration and authentication router */}
 
         <Route path="/" element={<Home user={user} />} />
-                {/* user registration and authentication router */}
+        {/* user registration and authentication router */}
 
-                <Route path="/" element={<Home user={user} />} />
+        <Route path="/" element={<Home user={user} />} />
         <Route
           path="/login"
           element={
@@ -317,7 +321,6 @@ function App() {
           }
         />
 
-
         {/* admin route */}
         <Route
           path="/dashboard/admin/userdetails/:id"
@@ -329,7 +332,16 @@ function App() {
           }
         />
 
-         <Route
+        <Route
+          path="/dashboard/admin/addmedicine/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <AddNewMedicine />
+            </>
+          }
+        />
+        <Route
           path="/dashboard/admin/unavailable/:id"
           element={
             <>
@@ -339,12 +351,32 @@ function App() {
           }
         />
 
-         <Route
+        <Route
           path="/dashboard/admin/emergency/:id"
           element={
             <>
               <Nav user={user} />
               <EmergencyMedicineUpdate />
+            </>
+          }
+        />
+
+        <Route
+          path={`/user/home/doctorseye/:id`}
+          element={
+            <>
+              <Nav user={user} />
+              <DoctorsEyeUser />
+            </>
+          }
+        />
+
+        <Route
+          path={`/user/home/doctorseye/doc/:id`}
+          element={
+            <>
+              <Nav user={user} />
+              <DoctorInterface />
             </>
           }
         />

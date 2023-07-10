@@ -4,7 +4,7 @@ const user = require("../models/userModel");
 
 exports.createNewEmergencyRequest = async (req, res) => {
   try {
-    console.log();
+    console.log("code entering flow");
     var url = "";
     if (req.files) {
       const files = req.files;
@@ -31,7 +31,7 @@ exports.createNewEmergencyRequest = async (req, res) => {
     const randomAdmin =
       allRequest[Math.floor(Math.random() * allRequest.length)];
 
-    console.log(randomAdmin);
+    console.log(randomAdmin.email);
 
     const message = ` <h3>Medicine details: </h3>
                       <p>Medicine name: ${newRequest.medicineName}</p>
