@@ -46,3 +46,28 @@
     color: black;
     margin-left: 50px;
   }
+
+  .shade-des{
+    box-shadow: 0 0 10px 4px rgba(0,0,0,0.1);
+    padding: 14px;
+  }
+  .btnn2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btnn2 button{
+    background-color: #0dba08;
+    color: white;
+    padding: 13px 30px;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 8px;
+    text-align: center;
+    
+    border-style: none;
+  }
+  .btnn2 button:hover{
+    color: black;
+     
+  }
