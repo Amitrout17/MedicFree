@@ -36,7 +36,6 @@ exports.addMedicine = async (req, res) => {
       ...findmedicine,
       medicine: [...findmedicine.medicine, req.body.medicine],
     };
-    console.log(newMedicine);
 
     newMedicine.save((err, updatedDocument) => {
       if (err) {
@@ -60,7 +59,6 @@ exports.checkMedicines = async(req, res) => {
   var medicines = [];
   try{
     const medicinenames = await medicineItem.distinct("medicine");
-    console.log(medicinenames);
     medicinenames.map((item) => {
       medicineArray.map(i => {
         if(i === item.name && item.stock > 0) {

@@ -279,7 +279,7 @@ Review message: '''${message}'''
 exports.searchMedicineFromPrescution = async (req, res) => {
   try {
     const filePath = `D:/MedicFree/backend/uploads/${req.files[0].filename}`;
-    var result;
+    var result = [];
     var arr = [];
     await axios
       .post(
@@ -299,9 +299,30 @@ exports.searchMedicineFromPrescution = async (req, res) => {
         console.error(error);
       });
 
-    result = arr.map((item) => item.replace("*", "")).join(", ");
+    /*       const array = ['¢ Tab. Ibuprofen', '* Tab. Acetaminophen', '* Cap. Celecoxib'];
+     */ for (let item of arr) {
+      const match = item.match(/(?:Tab\.|Cap\.)\s*(.*)/);
+      if (match) {
+        result.push(match[1]);
+      }
+    }
 
-    console.log(err);
+    console.log(result);
+
+    await axios
+      .post("http://localhost:4000/api/v1/medicine/checkmedicines", {
+        medicinelist: result,
+      })
+      .then((result) => {
+        return res.status(200).json({
+          result: result.data,
+        });
+      })
+      .catch((err) => {
+        return res.status(200).json({
+          err: err.response.data.message,
+        });
+      });
   } catch (error) {
     res.status(500).json({
       message: "Internal server error",
