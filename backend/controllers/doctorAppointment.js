@@ -193,7 +193,10 @@ exports.getMyappointment = async (req, res) => {
     const allAppointment = await appointment.find({
       patientId: req.params.id,
     });
-    
+
+    res.status(200).json({
+      allAppointment,
+    });
   } catch (error) {
     res.status(500).json({
       sucess: false,

@@ -1,16 +1,20 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./doctor.css";
 import Heart from "./images/heart.png";
 import Arrow from "./images/icons8-arrow-50.png";
 import Cancer from "./images/icons8-reminder-96.png";
 import Dia from "./images/diabetes.png";
 import Hyper from "./images/icons8-hypertension-96.png";
+
 const DoctorAppointment = () => {
+  const navigate = useNavigate();
   // const handleinput= (spaciality)=>{
   //   Navigate(`/doctor/find/${spaciality}`);
   // }
-  const myappointment = async () => {};
+  const myappointment = async () => {
+    navigate("/doctor/appointment/my");
+  };
   return (
     <>
       <div className="doctor-item">
