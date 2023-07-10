@@ -71,3 +71,18 @@
     color: black;
      
   }
+
+  
+
+  .appointment{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 35px;
+    row-gap: 30px; 
+    padding: 2rem;
+    margin: 0px 330px;
+  }
+
+  .close{
+    margin-top: -10px !important;
+  }
