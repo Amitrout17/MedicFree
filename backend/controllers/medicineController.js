@@ -14,6 +14,7 @@ exports.addMedicine = async (req, res) => {
         address: req.body.address,
         pinCode: req.body.pinCode,
         medicine: [req.body.medicine[0]],
+        image: req.body.storeimage,
       });
 
       const savedDocument = await newDocument.save();
@@ -27,7 +28,7 @@ exports.addMedicine = async (req, res) => {
 
       if (medicinePresent) {
         return res.status(403).json({
-          success: "partially true",
+          success: true,
           message: "Medicine already exists. Stock will be updated instead.",
         });
       }
