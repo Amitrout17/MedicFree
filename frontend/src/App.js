@@ -36,6 +36,7 @@ import UnavailableMedicineUpdate from "./components/adminDashboard/UnavailableMe
 import DoctorDetails from "./components/DoctorAppointment/DoctorDetails.js";
 import DoctorsEyeUser from "./components/DoctorsEye/DoctorsEyeUser.js";
 import DoctorInterface from "./components/DoctorsEye/DoctorInterface.js";
+import AppointmentConfirm from "./components/DoctorAppointment/AppointmentConfirm.js";
 
 function App() {
   const [user, setuser] = useState();
@@ -392,7 +393,7 @@ function App() {
           }
         />
 
-<Route
+        <Route
           path="/doctor/find/:spaciality"
           element={
             <>
@@ -402,7 +403,15 @@ function App() {
           }
         />
 
-
+        <Route
+          path="/doctor/appointment/confirmation/:appointmentId"
+          element={
+            <>
+              <Nav user={user} />
+              <AppointmentConfirm />
+            </>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
