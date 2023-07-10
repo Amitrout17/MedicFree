@@ -39,6 +39,8 @@ import DoctorInterface from "./components/DoctorsEye/DoctorInterface.js";
 import AppointmentConfirm from "./components/DoctorAppointment/AppointmentConfirm.js";
 import MyAppointments from "./components/DoctorAppointment/MyAppointments.js";
 import DoctorSchedule from "./components/DoctorAppointment/DoctorSchedule.js";
+import LabTestUpdate from "./components/adminDashboard/LabTestUpdate.js";
+import AdminUpload from "./components/adminDashboard/AdminUpload.js";
 
 function App() {
   const [user, setuser] = useState();
@@ -363,6 +365,26 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/dashboard/admin/labtest/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <LabTestUpdate />
+            </>
+          }
+        />
+
+         <Route
+          path="/dashboard/admin/labtest/upload/:id"
+          element={
+            <>
+              <Nav user={user} />
+              <AdminUpload />
+            </>
+          }
+        />
+
 
         <Route
           path={`/user/home/doctorseye/:id`}
