@@ -1,4 +1,5 @@
 const express = require("express");
+const { upload } = require("../config/fileupload");
 const {
   addMedicine,
   fetchAllMedicine,
@@ -10,7 +11,7 @@ const {
 
 const router = express.Router();
 
-router.route("/api/v1/medicine/add").post(addMedicine);
+router.route("/api/v1/medicine/add").post(upload, addMedicine);
 router.route("/api/v1/medicine/show").get(fetchAllMedicine);
 router.route("/api/v1/medicine/updatestock").post(updateStock);
 router.route("/api/v1/medicine/findstores").get(storesInPincode);

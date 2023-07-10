@@ -101,7 +101,7 @@ const LabTestUpdate = () => {
                               handleInput(item._id);
                             }}
                             disabled={
-                              item.Availabilitystatus === "processing"
+                              item.Availabilitystatus === "processing" || item.Availabilitystatus === "published"
                                 ? true
                                 : false
                             }
