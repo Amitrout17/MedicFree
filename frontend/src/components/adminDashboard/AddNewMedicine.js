@@ -31,7 +31,7 @@ function AddMedicine() {
                 name: medicinename,
                 stock,
                 category,
-                medicineimage,
+                'image': medicineimage,
                 }
             ],
             address,
@@ -117,7 +117,7 @@ function AddMedicine() {
                       name="name"
                       value={medicineimage}
                       onChange={(e) => {
-                        setmedicineimage(e.target.value);
+                        setmedicineimage(e.target.files[0].name);
                       }}
                     />
                   </Form.Group>
@@ -180,7 +180,7 @@ function AddMedicine() {
                       name="name"
                       value={storeimage}
                       onChange={(e) => {
-                        setstoreimage(e.target.value);
+                        setstoreimage(e.target.files[0].name);
                       }}
                     />
                   </Form.Group>
