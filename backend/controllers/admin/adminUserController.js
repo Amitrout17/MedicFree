@@ -66,10 +66,12 @@ exports.updateUserVerification = async(req, res) => {
 // ability to get all the users whose result status is pending
 exports.getPendingTestResults = async(req, res) => {
     try{
-        const getTestResults = await testbook.find({ resultStatus: 'pending' });
+        const getTestResults = await testbook.find();
+        
+        console.log(getTestResults)
         res.status(200).json({
             message: "Published test results",
-            testResult: getTestResults,
+            getTestResults,
         });
     } catch (error) {
       res.status(500).json({
@@ -79,19 +81,45 @@ exports.getPendingTestResults = async(req, res) => {
     }
 };
 
+exports.processingTestResults = async(req, res) => {
+  try{
+      const updateTestResult = await testbook.findByIdAndUpdate(
+          req.body.id,
+          { resultStatus: 'processing' });
+      res.status(200).json({
+          message: "Published test results",
+          updateTestResult,
+      });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};
+
 // ability to update test results of the user
 // (
-//  1. change status from pending to resolved
+//  1. change status from processing to published
 //  2. upload prescription of lab test
 //  )
 exports.publishTestResults = async(req, res) => {
     try{
+
+      var url = "";
+    if (req.files) {
+      const files = req.files;
+      if (files !== undefined) {
+        url = `http://localhost:${process.env.PORT}/uploads/${req.files[0].filename}`;
+        console.log(url);
+      }
+    }
         const updateTestResult = await testbook.findByIdAndUpdate(
             req.body.id,
-            { resultStatus: 'published', resultDocument: req.body.documentURL });
+            { resultStatus: 'published', resultDocument: url });
         res.status(200).json({
             message: "Published test results",
-            testResult: updateTestResult,
+            updateTestResult,
         });
     } catch (error) {
       res.status(500).json({

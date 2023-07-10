@@ -37,6 +37,12 @@ function AdminSidebar() {
       icon: MedicineTaken,
       iconStyle: iconStyle,
     },
+    {
+      title: "Lab Test",
+      link: `/dashboard/admin/labtest/${id}`,
+      icon: MedicineTaken,
+      iconStyle: iconStyle,
+    },
   ];
 
   return (
