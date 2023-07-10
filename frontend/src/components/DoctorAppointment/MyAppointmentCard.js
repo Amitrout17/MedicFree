@@ -24,7 +24,6 @@ function MyAppointmentCard({ data }) {
           Join Call
         </button>
         </div>
-       
       </div>
     </>
   );

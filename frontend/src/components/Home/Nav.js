@@ -84,7 +84,7 @@ function nav({ user }) {
             </li> */}
         </ul>
       </div>
-      <Nav2 />
+      <Nav2 user={user} />
       <hr />
       {/* div for navigation bar items */}
     </>
