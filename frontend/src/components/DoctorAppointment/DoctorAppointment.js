@@ -87,7 +87,10 @@ const DoctorAppointment = () => {
           </Link>
         </div>
       </div>
-      <button onClick={myappointment}>my appointments</button>
+      <div className="btnn2">
+      <button onClick={myappointment} >My Appointments</button>
+      </div>
+      
     </>
   );
 };

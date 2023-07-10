@@ -21,10 +21,12 @@ function MyAppointments() {
   return (
     <>
       <div>
-        <h5>My Appointments</h5>
-
-        {appointment &&
+        <h2 className="head-medicineTaken py-3 mb-3">My Appointments</h2>
+          <div className="appointment">
+          {appointment &&
           appointment.map((item) => <MyAppointmentCard data={item} />)}
+          </div>
+        
       </div>
     </>
   );
