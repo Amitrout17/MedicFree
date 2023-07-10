@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 function Room() {
   const { roomID } = useParams();
+
+  const userName = localStorage.getItem("userName");
+
   const myMeeting = async (element) => {
     const appID = 270736326;
     const serverSecret = "fd680d554ed927e676810fcd3f8a28e1";
@@ -11,7 +14,7 @@ function Room() {
       serverSecret,
       roomID,
       Date.now().toString(),
-      "Amit Rout"
+      userName
     );
     const zc = ZegoUIKitPrebuilt.create(kitToken);
     zc.joinRoom({
