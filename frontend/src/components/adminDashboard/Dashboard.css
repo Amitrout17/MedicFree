@@ -92,3 +92,18 @@
 	overflow-x: hidden;
 	width: calc(100% - var(--sidebar-width));
 }
+
+
+.medicine-detail4{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 23px;
+  row-gap: 40px;
+  
+}
+@media screen  and (max-width: 1000px) {
+  .medicine-detail4{
+   
+    grid-template-columns: 1fr 1fr;
+  }
+}
