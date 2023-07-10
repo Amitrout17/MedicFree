@@ -59,7 +59,7 @@ function nav({ user }) {
             {user.role == "user" ? (
               <Link to={`/user/home/doctorseye/${user._id}`}>Doctor's Eye</Link>
             ) : (
-              <Link to={`/user/home/doctorseye/doc/${user._id}`}>
+              <Link to={`/user/home/doctorseye/doc/6490aba82986ba9ccbf04741`}>
                 Doctor's Eye
               </Link>
             )}

@@ -22,15 +22,34 @@ function DoctorInterface() {
     fetchLogs();
   }, []);
 
-  return <>
-  <h2 style={{ textAlign:"center", padding:".5rem", border:"1rem" }}>Patient Logs</h2>
-  <hr />
-  <div style={{ height:"2rem", }}></div>
-  <div style={{ padding:"0 2.5rem", margin:"0 20%", overflowY:"scroll", border: "2px solid grey", height: "60vh", }}>
-  <div style={{ height:".75rem", display:"flex", flexDirection:"column", justifyContent:"center" }}></div>
-    {logs && logs.map((item) => <DoctorMsg data={item} />)}
-  </div>
-  </>;
+  return (
+    <>
+      <h2 style={{ textAlign: "center", padding: ".5rem", border: "1rem" }}>
+        Patient Logs
+      </h2>
+      <hr />
+      <div style={{ height: "2rem" }}></div>
+      <div
+        style={{
+          padding: "0 2.5rem",
+          margin: "0 20%",
+          overflowY: "scroll",
+          border: "2px solid grey",
+          height: "60vh",
+        }}
+      >
+        <div
+          style={{
+            height: ".75rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        ></div>
+        {logs && logs.map((item) => <DoctorMsg data={item} />)}
+      </div>
+    </>
+  );
 }
 
 export default DoctorInterface;
