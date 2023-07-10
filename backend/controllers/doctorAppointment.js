@@ -1,5 +1,6 @@
 const doctor = require("../models/DoctorDB");
 const appointment = require("../models/appointmentDb");
+const userModel = require("../models/userModel");
 
 var currentDate = new Date();
 
@@ -75,6 +76,8 @@ exports.scheduleDoctorAppointment = async (req, res) => {
       _id: req.params.doctorId,
     });
 
+    console.log(req.params.doctorId);
+
     if (getDoctor.appointments.length === 0) {
       const newrecord = await appointment.create({
         doctorId: req.params.doctorId,
@@ -108,30 +111,22 @@ exports.scheduleDoctorAppointment = async (req, res) => {
 
       const recentTime = latstAppointment.time;
 
-      console.log(recentTime);
-
       var timeParts = recentTime.split(":");
 
       // Extract the hours and minutes
       var hours = parseInt(timeParts[0]);
       var minutes = parseInt(timeParts[1]);
 
-      console.log(minutes);
-
       minutes = minutes + 30;
-      console.log(minutes);
       if (minutes >= 60) {
         minutes = "00";
         hours++;
       }
 
-      console.log("getting minutes");
-      console.log(hours, minutes);
-
       const randomTime = getRandom24HourTime();
 
       const newRecord = await appointment.create({
-        doctorId: req.body.doctorId,
+        doctorId: req.params.doctorId,
         patientId: req.user.id,
         time: randomTime,
         date,
@@ -161,6 +156,47 @@ exports.scheduleDoctorAppointment = async (req, res) => {
     /*     const docAppointment = getDoctor.appointments[0];
     const [hours, minutes] = time.split(":").map(Number);
  */
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};
+
+exports.getPerticularAppointment = async (req, res) => {
+  try {
+    const getRecord = await appointment.findOne({
+      _id: req.params.id,
+    });
+
+    const doc = await doctor.findOne({
+      _id: getRecord.doctorId,
+    });
+
+    res.status(200).json({
+      getRecord,
+      doc,
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};
+
+exports.getMyappointment = async (req, res) => {
+  try {
+    const allAppointment = await appointment.find({
+      patientId: req.params.id,
+    });
+
+    res.status(200).json({
+      allAppointment,
+    });
   } catch (error) {
     res.status(500).json({
       sucess: false,
