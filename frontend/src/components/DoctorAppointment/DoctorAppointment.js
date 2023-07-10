@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import "./doctor.css";
 import Heart from "./images/heart.png";
 import Arrow from "./images/icons8-arrow-50.png";
