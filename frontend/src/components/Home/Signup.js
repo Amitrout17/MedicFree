@@ -4,6 +4,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./Footer";
 import "./css/signlogin.css";
+import axios from "axios";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -11,39 +12,37 @@ const Signup = () => {
     email: "",
     address: "",
     password: "",
-    document: "",
     phone: "",
     age: "",
   });
+  const [files, setFiles] = useState(null);
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
-    const { name, email, address, password, document, phone, age } =
-      credentials;
-    const response = await fetch("http://localhost:4000/api/v1/user/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        address,
-        password,
-        document,
-        phone,
-        age,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
-    if (json.sucess) {
-      //save the auth toke to local storage and redirect
-      localStorage.setItem("token", json.authToken);
-      navigate("/login");
-    } else {
-      console.log("Enter Valid Credentials");
-    }
+
+    const { name, email, address, password, phone, age } = credentials;
+
+    const formData = new FormData();
+
+    formData.append("files", files);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("address", address);
+    formData.append("password", password);
+    formData.append("phone", phone);
+    formData.append("age", age);
+    console.log(formData);
+
+    await axios
+      .post("http://localhost:4000/api/v1/user/register", formData)
+      .then((res) => {
+        console.log(res);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err.response.data.message);
+      });
   };
 
   const onChange = (e) => {
@@ -110,9 +109,12 @@ const Signup = () => {
               <Form.Control
                 type="file"
                 placeholder="Enter email"
-                name="document"
-                value={credentials.document}
-                onChange={onChange}
+                name="files"
+                onChange={(e) => {
+                  e.preventDefault();
+
+                  setFiles(e.target.files[0]);
+                }}
               />
 
               <Form.Text className="text-muted">

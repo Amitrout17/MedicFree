@@ -3,9 +3,17 @@ const user = require("../models/userModel");
 const sendEmail = require("../utils/sendEmail");
 const JWT = require("jsonwebtoken");
 
-
 exports.registerUser = async (req, res) => {
   try {
+    var url = "";
+    if (req.files) {
+      const files = req.files;
+      if (files !== undefined) {
+        url = `http://localhost:${process.env.PORT}/uploads/${req.files[0].filename}`;
+        console.log(url);
+      }
+    }
+
     const finduser = await user.findOne({
       email: req.body.email,
     });
@@ -17,8 +25,18 @@ exports.registerUser = async (req, res) => {
       });
     }
 
-    const newUser = await user.create(req.body);
+    console.log(req.document);
 
+    const newUser = await user.create({
+      name: req.body.name,
+      email: req.body.email,
+      age: req.body.age,
+      password: req.body.password,
+      address: req.body.address,
+      document: url,
+      phone: req.body.phone,
+    });
+    console.log(newUser);
     const jwtData = {
       id: newUser._id,
     };
