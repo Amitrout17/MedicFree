@@ -50,8 +50,7 @@ function AddMedicine() {
         console.log(res);
         setJsonData(res);
     if(res.data.success === true) {
-        alert("Medicine Added");
-        window.location.reload();
+        alert(res.data.message);
     } else {
         alert("Internal Server Error");
     }})

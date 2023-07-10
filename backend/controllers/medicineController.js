@@ -18,25 +18,28 @@ exports.addMedicine = async (req, res) => {
       });
 
       const savedDocument = await newDocument.save();
-      res.status(200).json({ success: true, savedDocument });
+      return res.status(200).json({ success: true, message: "Medicine Added!", savedDocument });
     } else {
       let medicinePresent = false;
 
-      if (findmedicine.medicine.some((m) => m.name === req.body.medicine[0].name)) {
+      findmedicine.medicine.map((m) => {
+        if(m.name === req.body.medicine[0].name) {
+        m.stock = req.body.medicine[0].stock;
         medicinePresent = true;
-      }
+      }});
 
       if (medicinePresent) {
-        return res.status(403).json({
+        const updatedDocument = await findmedicine.save();
+        return res.status(200).json({
           success: true,
           message: "Medicine already exists. Stock will be updated instead.",
-        });
+          updatedDocument });
       }
 
       findmedicine.medicine.push(req.body.medicine[0]);
 
       const updatedDocument = await findmedicine.save();
-      res.status(200).json({ success: true, updatedDocument });
+      res.status(200).json({ success: true, message: "Medicine Added!", updatedDocument });
     }
   } catch (error) {
     res.status(500).json({
@@ -54,7 +57,6 @@ exports.checkMedicines = async(req, res) => {
   var medicines = [];
   try{
     const medicinenames = await medicineItem.distinct("medicine");
-    console.log(medicinenames);
     medicinenames.map((item) => {
       medicineArray.map(i => {
         if(i === item.name && item.stock > 0) {
