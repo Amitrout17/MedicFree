@@ -198,8 +198,7 @@ exports.getMyappointment = async (req, res) => {
     for (let i of allAppointment) {
       const doctorobj = await doctor.find({_id: i.doctorId});
       const doctorname = doctorobj[0].name;
-      i.doctorname = doctorname
-      result.push(i);
+      result.push({i, doctorname});
     }
 
     res.status(200).json({
