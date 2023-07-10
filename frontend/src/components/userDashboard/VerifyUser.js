@@ -16,6 +16,7 @@ function VerifyYourself() {
 			const response = await axios
 				.post(`http://localhost:4000/api/v1/user/varify/${id}`,
 			);
+			alert("OTP send!");
 			setverificationCode(response.data.varificationCode);
 			console.log(response);
 		} catch (error) {

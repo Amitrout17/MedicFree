@@ -17,7 +17,8 @@ function AddMedicine() {
   const [pinCode, setpinCode] = useState("");
   const [stock, setstock] = useState("");
   const [category, setcategory] = useState("");
-  const [image, setimage] = useState("");
+  const [medicineimage, setmedicineimage] = useState("");
+  const [storeimage, setstoreimage] = useState("");
 
   const submitHandler = async(e) => {
     e.preventDefault();
@@ -30,12 +31,13 @@ function AddMedicine() {
                 name: medicinename,
                 stock,
                 category,
-                image,
+                medicineimage,
                 }
             ],
             address,
             pinCode,
             stock,
+            storeimage
         },
         {
             headers: {
@@ -48,9 +50,9 @@ function AddMedicine() {
         console.log(res);
         setJsonData(res);
     if(res.data.success === true) {
-        alert("Medicine Added");
-    } else if(res.data.success === false) {
-        alert("Medicine Already Present! Try verifying the information.");
+        alert(res.data.message);
+    } else {
+        alert("Internal Server Error");
     }})
     .catch((err) => {
         console.log(err);
@@ -109,12 +111,13 @@ function AddMedicine() {
                   <Form.Group className="mb-3 " controlId="formBasicEmail">
                     <Form.Label className="text-start">Upload Medicine Image: </Form.Label>
                     <Form.Control
-                      type="text"
-                      placeholder="Enter Image here "
+                      type="file"
+                      accept="image/*"
+                      placeholder="Enter Medicine Image here "
                       name="name"
-                      value={image}
+                      value={medicineimage}
                       onChange={(e) => {
-                        setimage(e.target.value);
+                        setmedicineimage(e.target.value);
                       }}
                     />
                   </Form.Group>
@@ -168,11 +171,24 @@ function AddMedicine() {
                       }}
                     />
                   </Form.Group>
+                  <Form.Group className="mb-3 " controlId="formBasicEmail">
+                    <Form.Label className="text-start">Upload Store Image: </Form.Label>
+                    <Form.Control
+                      type="file"
+                      accept="image/*"
+                      placeholder="Enter Store Image here "
+                      name="name"
+                      value={storeimage}
+                      onChange={(e) => {
+                        setstoreimage(e.target.value);
+                      }}
+                    />
+                  </Form.Group>
 
                   <div className="">
                     <Button
                       size="lg"
-                      className="float-left"
+                      className="float-left mt-3"
                       variant="primary"
                       type="submit"
                       onClick={e => submitHandler(e)}
