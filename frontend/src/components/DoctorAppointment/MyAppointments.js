@@ -12,7 +12,7 @@ function MyAppointments() {
         .get(`http://localhost:4000/api/v1/appointment/all/my/${id}`)
         .then((res) => {
           console.log(res);
-          setappointment(res.data.allAppointment);
+          setappointment(res.data.result);
         });
     };
     loadData();

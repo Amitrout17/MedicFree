@@ -38,6 +38,7 @@ import DoctorsEyeUser from "./components/DoctorsEye/DoctorsEyeUser.js";
 import DoctorInterface from "./components/DoctorsEye/DoctorInterface.js";
 import AppointmentConfirm from "./components/DoctorAppointment/AppointmentConfirm.js";
 import MyAppointments from "./components/DoctorAppointment/MyAppointments.js";
+import DoctorSchedule from "./components/DoctorAppointment/DoctorSchedule.js";
 import LabTestUpdate from "./components/adminDashboard/LabTestUpdate.js";
 import AdminUpload from "./components/adminDashboard/AdminUpload.js";
 
@@ -441,6 +442,15 @@ function App() {
             <>
               <Nav user={user} />
               <MyAppointments />
+            </>
+          }
+        />
+        <Route
+          path="/appointment/doctor/doctorApp"
+          element={
+            <>
+              <Nav user={user} />
+              <DoctorSchedule />
             </>
           }
         />

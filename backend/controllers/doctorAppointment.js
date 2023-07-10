@@ -194,6 +194,31 @@ exports.getMyappointment = async (req, res) => {
       patientId: req.params.id,
     });
 
+    result = [];
+    for (let i of allAppointment) {
+      const doctorobj = await doctor.find({_id: i.doctorId});
+      const doctorname = doctorobj[0].name;
+      result.push({i, doctorname});
+    }
+
+    res.status(200).json({
+      result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};
+
+exports.getDoctorAppointments = async (req, res) => {
+  try {
+    const allAppointment = await appointment.find({
+      _id: req.params.id,
+    });
+
     res.status(200).json({
       allAppointment,
     });

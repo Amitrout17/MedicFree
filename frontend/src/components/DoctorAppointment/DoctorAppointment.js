@@ -69,7 +69,7 @@ const DoctorAppointment = () => {
         </div>
         <div className="one-item">
           <Link
-            to={"/doctor/find/Hyper Tension"}
+            to={"/doctor/find/HyperTension"}
             style={{ textDecoration: "none" }}
           >
             <div className="doctor-detail">

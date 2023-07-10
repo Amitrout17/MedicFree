@@ -2,56 +2,54 @@ const medicineItem = require("../models/medicineModel.js");
 
 exports.addMedicine = async (req, res) => {
   try {
-    const findmedicine = await medicineItem.find({
+    const findmedicine = await medicineItem.findOne({
       storeName: req.body.storeName,
       address: req.body.address,
       pinCode: req.body.pinCode,
     });
 
-    if(findmedicine === null) {
-
-      findmedicine.save((err, updatedDocument) => {
-        if (err) {
-          console.log(err);
-        } else {
-          res.status(200).json({ sucess: true, updatedDocument });
-        }
+    if (!findmedicine) {
+      const newDocument = new medicineItem({
+        storeName: req.body.storeName,
+        address: req.body.address,
+        pinCode: req.body.pinCode,
+        medicine: [req.body.medicine[0]],
+        image: req.body.storeimage,
       });
-    }
 
-    let medicinePresent = false;
-    findmedicine.map((item) => {
-      if (item.name === req.body.medicine.name) {
+      const savedDocument = await newDocument.save();
+      return res.status(200).json({ success: true, message: "Medicine Added!", savedDocument });
+    } else {
+      let medicinePresent = false;
+
+      findmedicine.medicine.map((m) => {
+        if(m.name === req.body.medicine[0].name) {
+        m.stock = req.body.medicine[0].stock;
         medicinePresent = true;
+      }});
+
+      if (medicinePresent) {
+        const updatedDocument = await findmedicine.save();
+        return res.status(200).json({
+          success: true,
+          message: "Medicine already exists. Stock will be updated instead.",
+          updatedDocument });
       }
-    });
-    if (medicinePresent) {
-      return res.status(403).json({
-        success: false,
-        message: "medicine already exists",
-      });
+
+      findmedicine.medicine.push(req.body.medicine[0]);
+
+      const updatedDocument = await findmedicine.save();
+      res.status(200).json({ success: true, message: "Medicine Added!", updatedDocument });
     }
-
-    const newMedicine = {
-      ...findmedicine,
-      medicine: [...findmedicine.medicine, req.body.medicine],
-    };
-
-    newMedicine.save((err, updatedDocument) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).json({ sucess: true, updatedDocument });
-      }
-    });
   } catch (error) {
     res.status(500).json({
-      sucess:false,
+      success: false,
       message: "Internal server error",
       errorMessage: error.message,
     });
   }
 };
+
 
 exports.checkMedicines = async(req, res) => {
   const medicineArray = req.body.medicinelist;
