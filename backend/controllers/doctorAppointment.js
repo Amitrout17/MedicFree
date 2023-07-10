@@ -205,3 +205,21 @@ exports.getMyappointment = async (req, res) => {
     });
   }
 };
+
+exports.getDoctorAppointments = async (req, res) => {
+  try {
+    const allAppointment = await appointment.find({
+      _id: req.params.id,
+    });
+
+    res.status(200).json({
+      allAppointment,
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};

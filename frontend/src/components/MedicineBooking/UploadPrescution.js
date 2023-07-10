@@ -1,14 +1,10 @@
 import axios from "axios";
-import React, { useState} from "react";
-import {  useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./uploadprescution.css";
 import Upload from "../Home/img/upload 2.png";
 
-
 function UploadPrescution({ user }) {
-
-
-
   const [files, setFiles] = useState(null);
   const [varified, setvarified] = useState(false);
   const [book, setbook] = useState(false);
@@ -17,7 +13,6 @@ function UploadPrescution({ user }) {
 
   const onFileUpladChange = async (e) => {
     e.preventDefault();
-
 
     try {
       const formData = new FormData();
@@ -50,7 +45,7 @@ function UploadPrescution({ user }) {
       alert("document not varified");
     }
   };
-    
+
   const bookMedicine = async () => {
     await axios
       .post(
@@ -65,7 +60,6 @@ function UploadPrescution({ user }) {
       )
       .then((res) => {
         setbookingData(res.data.responseData);
-        
       })
       .catch((err) => {
         console.log(err);
@@ -73,30 +67,13 @@ function UploadPrescution({ user }) {
       });
   };
 
-
   return (
     <>
       <div class="wrapper">
         <div className="indiv">
-          <h2>UPLOAD FILES</h2>
-          <h5>Upload prescution for verification and further process</h5>
-          <label htmlFor="fileBTN-upload" className="drop-container">
-            <img src={Upload} alt="" />
-            <span className="drop-title">Drop files here</span>
-            <input
-              type="file"
-              onChange={onFileUpladChange}
-              id="fileBTN-upload"
-            />
-          </label>
-          <button  onClick={documentVarify}>varify document</button>
-
-          {book && (
-            <button className="btnn"  onClick={bookMedicine}>
-              Book Medicine
-            </button>
-   
-          )}
+          <button className="btnn" onClick={bookMedicine}>
+            Book Medicine
+          </button>
         </div>
       </div>
 
