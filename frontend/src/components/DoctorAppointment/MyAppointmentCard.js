@@ -9,7 +9,8 @@ function MyAppointmentCard({ data }) {
       <div className="medicine-detail3 " style={{textAlign:"center",marginBottom:"10px"}}>
        
        <p ><b style={{fontSize:"20px"}} >Remember to join!</b></p>
-       <p className="close">Your Appointment is being scheduled same day and exact time.</p> 
+       <p className="close">Your Appointment is being scheduled same day and exact time.</p>
+       <p className="close"><b>Doctor name:</b> Dr. {data.doctorname}</p> 
         <p><b>Appointment Date:</b>{" "}
         {data.date}-{data.month}-{data.year}</p>
         <p className="close"><b>Appointment Time:</b>  {data.time}</p>
