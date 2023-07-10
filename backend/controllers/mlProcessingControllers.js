@@ -225,8 +225,8 @@ exports.threatAnalysis = async (req, res) => {
       apiKey: process.env.OPEN_AI_API_KEY,
     });
 
-    console.log(process.env.OPEN_AI_API_ORG)
-    console.log(process.env.OPEN_AI_API_KEY)
+    console.log(process.env.OPEN_AI_API_ORG);
+    console.log(process.env.OPEN_AI_API_KEY);
 
     const openai = new OpenAIApi(configuration);
     var result;
@@ -268,6 +268,40 @@ Review message: '''${message}'''
         result,
       });
     });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+      errorMessage: error.message,
+    });
+  }
+};
+
+exports.searchMedicineFromPrescution = async (req, res) => {
+  try {
+    const filePath = `D:/MedicFree/backend/uploads/${req.files[0].filename}`;
+    var result;
+    var arr = [];
+    await axios
+      .post(
+        "http://127.0.0.1:5000/extract_text",
+        { file_path: filePath },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        arr = response.data;
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    result = arr.map((item) => item.replace("*", "")).join(", ");
+
+    console.log(err);
   } catch (error) {
     res.status(500).json({
       message: "Internal server error",
