@@ -32,6 +32,7 @@ import DoctorAppointment from "./components/DoctorAppointment/DoctorAppointment.
 import Room from "./components/DoctorAppointment/Room/Room.js";
 import EmergencyMedicineUpdate from "./components/adminDashboard/EmergencyMedicineUpdate.js";
 import UnavailableMedicineUpdate from "./components/adminDashboard/UnavailableMedicineUpdate.js";
+import DoctorDetails from "./components/DoctorAppointment/DoctorDetails.js";
 
 function App() {
   const [user, setuser] = useState();
@@ -358,6 +359,18 @@ function App() {
             </>
           }
         />
+
+<Route
+          path="/doctor/find/:spaciality"
+          element={
+            <>
+              <Nav user={user} />
+              <DoctorDetails />
+            </>
+          }
+        />
+
+
       </Routes>
     </BrowserRouter>
   );
