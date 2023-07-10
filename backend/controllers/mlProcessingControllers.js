@@ -194,11 +194,14 @@ exports.medicalChatBot = async (req, res) => {
         })
         .catch((err) => {
           console.log(err);
+          return res.status(500).json({
+            message:"OpenAI server Busy"
+          })
         });
     }
     const message = req.body.input;
     console.log(message);
-    const prompt = `Give your answer in one to two sentences for the query which is delimited with triple backticks \n
+    const prompt = `Give your answer in one sentence for the query which is delimited with triple backticks \n
     user query: '''${message}'''`;
 
     await complete(prompt).then(() => {

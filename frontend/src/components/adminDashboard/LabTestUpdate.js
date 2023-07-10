@@ -97,14 +97,15 @@ const LabTestUpdate = () => {
                         >
                           <button
                             className="btn btn-success mx-2"
-                            onClick={() => {
-                              handleInput(item._id);
-                            }}
                             disabled={
-                              item.Availabilitystatus === "processing" || item.Availabilitystatus === "published"
+                              item.resultStatus === "processing" || item.resultStatus === "published"
                                 ? true
                                 : false
                             }
+                            onClick={() => {
+                              handleInput(item._id);
+                            }}
+                            
                           >
                             processing
                           </button>
